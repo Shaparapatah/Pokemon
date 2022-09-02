@@ -1,0 +1,96 @@
+// Важно поставить 'com.android.library' (для модуля library),
+// а не 'com.android.application' (для app)
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+// Подключение плагина для работы с аннотациями (нужно для Room)
+apply plugin: 'kotlin-kapt'
+// Подключение плагина для удобной парселизации
+apply plugin: 'kotlin-parcelize'
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // Подключение модулей
+    api project(":core")
+
+    // Подключение библиотек
+    //AndroidX
+    implementation libs.androidX.appcompat
+    //Kotlin
+    implementation libs.kotlin.ktx
+    implementation libs.kotlin.jdk7
+    implementation libs.kotlin.coroutinescore
+    implementation libs.kotlin.coroutinesandroid
+    //Design
+    implementation libs.design.material
+    implementation libs.design.constrlayout
+    // Tests
+    // Core
+    testImplementation libs.tests.junit
+    androidTestImplementation libs.tests.ext // Нужно для работы AndroidJUnit4 в инструментальных-тестах
+    androidTestImplementation libs.tests.espressocore
+    implementation fileTree(dir: libs.tests.filetreedir, include: libs.tests.filetreeinclude)
+    // Mockito
+    testImplementation libs.tests.mockitocore
+    testImplementation libs.tests.mockitoinline
+    testImplementation (libs.tests.mockitokotlin) {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.mockito'
+    }
+    // Robolectric
+    testImplementation libs.tests.robolectric
+    testImplementation libs.tests.robolectriccore
+    testImplementation libs.tests.robolectricrunner
+    testImplementation libs.tests.ext // Нужно для работы AndroidJUnit4 в Unit-тестах
+    testImplementation libs.tests.robolectrictruth
+    testImplementation libs.tests.robolectricespressocore
+    testImplementation libs.tests.robolectricespressointents
+    // UI Automator
+    androidTestImplementation libs.tests.uiautomator
+    androidTestImplementation libs.tests.uiautomatorrules
+    // Fragment
+    debugImplementation libs.tests.fragmentWork
+    // RecyclerView
+    debugImplementation libs.tests.recyclerView
+    // Room
+    implementation libs.room.runtime
+    kapt libs.room.compiler
+    implementation libs.room.ktx
+    implementation libs.room.gson
+    // Koin
+    //Koin core features
+    implementation libs.koin.core
+    //Koin main features for Android (Scope,ViewModel ...)
+    implementation libs.koin.android
+    //Koin Java Compatibility
+    implementation libs.koin.compat
+    // For Retrofit 2 coroutines
+    implementation libs.koin.retrofitcoroutines
+    // Koin for Tests
+    testImplementation libs.koin.testsandroidx
+    testImplementation libs.koin.testsio
+}

@@ -1,0 +1,53 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+// Подключение модулей
+    api project(":model")
+
+    //Kotlin
+    implementation libs.kotlin.ktx
+    implementation libs.kotlin.jdk7
+    implementation libs.kotlin.coroutinescore
+    implementation libs.kotlin.coroutinesandroid
+    // Koin
+    //Koin core features
+    implementation libs.koin.core
+    //Koin main features for Android (Scope,ViewModel ...)
+    implementation libs.koin.android
+    //Koin Java Compatibility
+    implementation libs.koin.compat
+    // For Retrofit 2 coroutines
+    implementation libs.koin.retrofitcoroutines
+    // Koin for Tests
+    testImplementation libs.koin.testsandroidx
+    testImplementation libs.koin.testsio
+}
