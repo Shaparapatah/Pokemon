@@ -85,4 +85,12 @@ dependencies {
     // Koin for Tests
     testImplementation libs.koin.testsandroidx
     testImplementation libs.koin.testsio
+    //Retrofit
+    implementation libs.retrofit.runtime
+    implementation libs.retrofit.gson
+    // Room
+    implementation libs.room.runtime
+    kapt libs.room.compiler
+    implementation libs.room.ktx
+    implementation libs.room.gson
 }

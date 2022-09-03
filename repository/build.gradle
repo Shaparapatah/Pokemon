@@ -51,13 +51,14 @@ dependencies {
     // Tests
     // Core
     testImplementation libs.tests.junit
-    androidTestImplementation libs.tests.ext // Нужно для работы AndroidJUnit4 в инструментальных-тестах
+    androidTestImplementation libs.tests.ext
+    // Нужно для работы AndroidJUnit4 в инструментальных-тестах
     androidTestImplementation libs.tests.espressocore
     implementation fileTree(dir: libs.tests.filetreedir, include: libs.tests.filetreeinclude)
     // Mockito
     testImplementation libs.tests.mockitocore
     testImplementation libs.tests.mockitoinline
-    testImplementation (libs.tests.mockitokotlin) {
+    testImplementation(libs.tests.mockitokotlin) {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.mockito'
     }
@@ -93,4 +94,7 @@ dependencies {
     // Koin for Tests
     testImplementation libs.koin.testsandroidx
     testImplementation libs.koin.testsio
+    //Retrofit
+    implementation libs.retrofit.runtime
+    implementation libs.retrofit.gson
 }

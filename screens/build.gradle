@@ -99,4 +99,8 @@ dependencies {
 
     //Skydoves
     implementation libs.skydoves.transformationlayout
+
+    //Glide
+    implementation libs.glide.runtime
+    implementation libs.glide.compiler
 }
