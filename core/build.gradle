@@ -40,6 +40,7 @@ android {
 
 dependencies {
     // Подключение модулей
+    api project(":model")
     api project(":utils")
 
     // Подключение библиотек

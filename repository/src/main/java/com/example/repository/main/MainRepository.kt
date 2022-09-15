@@ -146,7 +146,7 @@ class MainRepository @Inject constructor(
                     return Resource.Error(apiResult.message())
                 }
             } catch (e: Exception) {
-                return Resource.Error("error retrieving results")
+                return Resource.Error("Ошибка")
             }
 
 
@@ -171,7 +171,7 @@ class MainRepository @Inject constructor(
 
         } else {
             Log.d(TAG, dbResult.toString())
-            return Resource.Error("no pokemon found")
+            return Resource.Error("Покемон не найден")
         }
     }
 
@@ -181,7 +181,7 @@ class MainRepository @Inject constructor(
         return if (dbResult != null) {
             Resource.Success(dbResult)
         } else {
-            Resource.Error("no pokemon found")
+            Resource.Error("Покемон не найден")
         }
     }
 

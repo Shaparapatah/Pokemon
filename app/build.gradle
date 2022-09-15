@@ -44,6 +44,7 @@ android {
 dependencies {
     // Подключение модулей
     api project(":screens")
+    api project(":utils")
 
     // Подключение библиотек
     //AndroidX
@@ -85,7 +86,7 @@ dependencies {
     debugImplementation libs.tests.fragmentWork
     // RecyclerView
     debugImplementation libs.tests.recyclerView
-    // Cicerony
+    // Cicerone
     implementation libs.cicerony.runtime
     // Koin
     //Koin core features
@@ -94,9 +95,27 @@ dependencies {
     implementation libs.koin.android
     //Koin Java Compatibility
     implementation libs.koin.compat
-    // For Retrofit 2 coroutines
-    implementation libs.koin.retrofitcoroutines
     // Koin for Tests
     testImplementation libs.koin.testsandroidx
     testImplementation libs.koin.testsio
+    //Hilt-dagger
+    implementation libs.hilt.dagger
+//    kapt libs.hilt.compiler
+    //Retrofit
+    implementation libs.retrofit.runtime
+    implementation libs.retrofit.gson
+    // For Retrofit 2 coroutines
+    implementation libs.koin.retrofitcoroutines
+    // Room
+    implementation libs.room.runtime
+    kapt libs.room.compiler
+    implementation libs.room.ktx
+    implementation libs.room.gson
+
+    //WorkManager
+    implementation libs.work.runtime
+
+    //Nav
+    implementation libs.nav.fragments
+    implementation libs.nav.ui
 }

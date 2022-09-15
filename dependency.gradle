@@ -42,8 +42,35 @@ def ciceronyVersion = "6.6"
 def moxyVersion = "2.2.2"
 def lifecycleVersion = "2.2.0"
 def skydovesVersion = "1.1.1"
+def hiltVersion = "1.0.0-beta01"
+def workManager = "2.7.1"
+def navGraph = "2.3.0"
+def circularImg = "4.3.1"
+
 ext {
     libs = [:]
+
+    //Circular ImageView
+    circular = [:]
+    libs.circular = circular
+    circular.imageview = "com.mikhaellopez:circularimageview:$circularImg"
+
+    //Nav
+    nav = [:]
+    libs.nav = nav
+    nav.fragments = "androidx.navigation:navigation-fragment-ktx:$navGraph"
+    nav.ui = "androidx.navigation:navigation-fragment-ktx:$navGraph"
+
+    //WorkManager
+    work = [:]
+    libs.work = work
+    work.runtime = "androidx.work:work-runtime-ktx:$workManager"
+
+    //Hilt-dagger
+    hilt = [:]
+    libs.hilt = hilt
+    hilt.dagger = "androidx.hilt:hilt-work:$hiltVersion"
+    hilt.compiler = "com.google.dagger:hilt-compiler:$hiltVersion"
 
     //Skydoves
     skydoves = [:]

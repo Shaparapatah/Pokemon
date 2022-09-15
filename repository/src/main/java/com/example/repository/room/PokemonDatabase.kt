@@ -6,9 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.model.dto.Converters
+import com.example.model.dto.CustomPokemonListItem
 import com.example.model.dto.PokemonDetailItem
 
-@Database(entities = [PokemonDetailItem::class], version = 1, exportSchema = false)
+@Database(
+    entities = [CustomPokemonListItem::class, PokemonDetailItem::class],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(Converters::class)
 abstract class PokemonDatabase : RoomDatabase() {
 

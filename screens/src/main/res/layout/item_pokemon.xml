@@ -34,7 +34,8 @@
                 android:scaleType="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/place_holder_image_135" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/name"
@@ -51,6 +52,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image"
                 tools:text="Bulbasaur" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/type"
+                android:layout_width="78dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="16dp"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:text="@string/item_pokemon_type"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Grass" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

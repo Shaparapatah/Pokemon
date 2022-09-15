@@ -4,10 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/app/src/main/res/layout/activity_main.xml" value="0.14629629629629629" />
-        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/fragment_details.xml" value="0.17603850050658562" />
-        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/fragment_main_screen.xml" value="0.14629629629629629" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/drawable-anydpi/ic_delete.xml" value="0.1" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/drawable-anydpi/ic_filter.xml" value="0.1" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/drawable-mdpi/progress_bar.xml" value="0.1" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/drawable-xxhdpi/corner_card.xml" value="0.1" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/drawable/ic_fire.xml" value="0.1" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/dialog_typefilter.xml" value="0.2" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/fragment_details.xml" value="0.22" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/fragment_main_screen.xml" value="0.18" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/fragment_map.xml" value="0.17603850050658562" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/fragment_saved_pokemon.xml" value="0.1691995947315096" />
         <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/item_pokemon.xml" value="0.18" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/saved_item_pokemon.xml" value="0.2" />
         <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/screens/src/main/res/layout/tool_bar.xml" value="0.17603850050658562" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/utils/src/main/res/drawable/drawable.xml" value="0.1" />
+        <entry key="..\:/Users/Shaparapatah/AndroidStudioProjects/Pokemon/utils/src/main/res/drawable/place_holder_image.xml" value="0.1" />
       </map>
     </option>
   </component>

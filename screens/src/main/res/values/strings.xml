@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="item_pokemon_type">type</string>
+    <string name="search_pokemon_by_type">Поиск Покемона по типу</string>
+    <string name="text_btn_dialog">Отмена</string>
+</resources>

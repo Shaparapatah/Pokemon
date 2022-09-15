@@ -33,6 +33,7 @@ dependencies {
 // Подключение модулей
     api project(":model")
 
+
     //Kotlin
     implementation libs.kotlin.ktx
     implementation libs.kotlin.jdk7
@@ -47,10 +48,16 @@ dependencies {
     implementation libs.koin.compat
     // For Retrofit 2 coroutines
     implementation libs.koin.retrofitcoroutines
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
     // Koin for Tests
     testImplementation libs.koin.testsandroidx
     testImplementation libs.koin.testsio
     //Glide
     implementation libs.glide.runtime
     implementation libs.glide.compiler
+    //Hilt-dagger
+    implementation libs.hilt.dagger
+    //Coroutines
+    implementation libs.coroutines.android
 }
