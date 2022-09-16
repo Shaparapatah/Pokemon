@@ -7,11 +7,12 @@ import com.example.repository.api.RetrofitService
 import com.example.repository.room.PokemonDAO
 import com.example.utils.Constants
 import com.example.utils.Resource
+import javax.inject.Inject
 
 
 private const val TAG = "MainRepository"
 
-class RepositoryImpl(
+class RepositoryImpl @Inject constructor(
     private val retrofit: RetrofitService,
     private val data: PokemonDAO
 ) : Repository {

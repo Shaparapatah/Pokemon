@@ -9,8 +9,9 @@ import com.example.repository.main.Repository
 import com.example.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainScreenViewModel(private val repository: Repository) :
+class MainScreenViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
     private val _pokemonList = MutableLiveData<Resource<List<CustomPokemonListItem>>>()

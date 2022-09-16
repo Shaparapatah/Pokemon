@@ -46,9 +46,19 @@ def hiltVersion = "1.0.0-beta01"
 def workManager = "2.7.1"
 def navGraph = "2.3.0"
 def circularImg = "4.3.1"
+def viewModelLifecycle = "2.4.0"
 
 ext {
     libs = [:]
+
+
+    //ViewModel
+    viewModel = [:]
+    libs.viewModel = viewModel
+    viewModel.navigationFragment = "androidx.navigation:navigation-fragment-ktx:$viewModelLifecycle"
+    viewModel.navigationUI = "androidx.navigation:navigation-ui-ktx:$viewModelLifecycle"
+    viewModel.livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$viewModelLifecycle"
+    viewModel.lifecycle = "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelLifecycle"
 
     //Circular ImageView
     circular = [:]
@@ -204,7 +214,7 @@ ext {
     // LiveData
     lifecycle.ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     // Lifecycles only (without ViewModel or LiveData)
-    lifecycle.runtimektx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
-    lifecycle.process = "androidx.lifecycle:lifecycle-process:$lifecycleVersion"
-    lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
+//    lifecycle.runtimektx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+//    lifecycle.process = "androidx.lifecycle:lifecycle-process:$lifecycleVersion"
+//    lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
 }

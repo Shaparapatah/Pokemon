@@ -8,39 +8,33 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
 import com.example.model.dto.PokemonDetailItem
+import com.example.pokemon.ui.main.MainActivity
 import com.example.screens.databinding.FragmentDetailsBinding
-import com.example.screens.navigator.AppScreensImpl
 import com.example.screens.viewmodel.DetailsFragmentViewModel
 import com.example.utils.ImageLoader
 import com.example.utils.Resource
-import com.github.terrakok.cicerone.Router
-import org.koin.java.KoinJavaComponent
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 private const val TAG = "DetailsFragment"
 
-
+@AndroidEntryPoint
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
     FragmentDetailsBinding::inflate
 ) {
+    val mainActivity: MainActivity by lazy {
+        requireActivity() as MainActivity
+    }
 
-    //Навигация
-    private val screens: AppScreensImpl = KoinJavaComponent.getKoin().get()
-    private val router: Router = KoinJavaComponent.getKoin().get()
-
-    //ViewModel
-    lateinit var viewModel: DetailsFragmentViewModel
-
+    private val viewModel: DetailsFragmentViewModel by viewModels()
     lateinit var mPokemon: CustomPokemonListItem
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        initViewModel()
 
         // checking for details passed from list fragment
         arguments?.let {
@@ -54,7 +48,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
                 binding.detailFragmentTitleName.text = pokemon.name.capitalize()
                 // query api for pokemon details
                 getPokemonDetails(pokemon.apiId)
-//                subscribeObservers()
+                subscribeObservers()
             }
         }
 
@@ -74,11 +68,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
         }
 
 
-    }
-
-    //Инициализцая ViewModel
-    private fun initViewModel() {
-        viewModel = ViewModelProvider(this)[DetailsFragmentViewModel::class.java]
     }
 
     private fun setType(type: String) {
@@ -234,14 +223,14 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
         }
 
         // setup last location plot on map
-//        mPokemon.Image?.let { ImageLoader.loadImage(requireContext(), binding.mapviewPlot, it) }
+        mPokemon.Image?.let { ImageLoader.loadImage(requireContext(), binding.mapviewPlot, it) }
 
         // set up random position
-//        ImageLoader.setMargins(
-//            binding.mapviewPlot,
-//            viewModel.plotLeft,
-//            viewModel.plotTop
-//        )
+        ImageLoader.setMargins(
+            binding.mapviewPlot,
+            viewModel.plotLeft,
+            viewModel.plotTop
+        )
 
 
     }

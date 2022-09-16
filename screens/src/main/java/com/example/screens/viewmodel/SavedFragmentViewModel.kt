@@ -9,9 +9,10 @@ import com.example.repository.main.Repository
 import com.example.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class SavedFragmentViewModel(private val repository: Repository) :
+class SavedFragmentViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
     private val _savedPokemon = MutableLiveData<Resource<List<CustomPokemonListItem>>>()

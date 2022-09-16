@@ -1,4 +1,4 @@
-package com.example.screens.navigator
+package com.example.pokemon.ui.main
 
 interface BackButtonListener {
     fun backPressed(): Boolean

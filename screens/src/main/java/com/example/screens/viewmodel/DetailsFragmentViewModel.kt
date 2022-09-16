@@ -11,9 +11,10 @@ import com.example.utils.Resource
 import com.example.utils.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class DetailsFragmentViewModel(private val repository: Repository) :
+class DetailsFragmentViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
     // single live event to stop stale items being stored in Live Data

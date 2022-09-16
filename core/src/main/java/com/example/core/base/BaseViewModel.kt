@@ -2,7 +2,6 @@ package com.example.core.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.model.dto.AppState
 import kotlinx.coroutines.*
 
 abstract class BaseViewModel<T : AppState>(

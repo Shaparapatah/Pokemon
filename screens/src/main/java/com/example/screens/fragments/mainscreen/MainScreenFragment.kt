@@ -1,77 +1,59 @@
 package com.example.screens.fragments.mainscreen
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
-import com.example.screens.adapter.AdapterMain
+import com.example.pokemon.ui.main.MainActivity
+import com.example.screens.adapter.MainScreenAdapter
 import com.example.screens.databinding.FragmentMainScreenBinding
 import com.example.screens.dialogs.FilterDialog
-import com.example.screens.navigator.AppScreensImpl
 import com.example.screens.viewmodel.MainScreenViewModel
-import com.example.utils.FragmentScope
 import com.example.utils.Resource
-import com.github.terrakok.cicerone.Router
-import org.koin.core.qualifier.named
+import dagger.hilt.android.AndroidEntryPoint
 import org.koin.core.scope.Scope
-import org.koin.java.KoinJavaComponent
 
 private const val TAG = "MainScreenFragment"
 
-
+@AndroidEntryPoint
 class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     FragmentMainScreenBinding::inflate
 ), FilterDialog.TypePicker {
 
-    //Навигация
-    private val screens: AppScreensImpl = KoinJavaComponent.getKoin().get()
-    private val router: Router = KoinJavaComponent.getKoin().get()
+    val mainActivity: MainActivity by lazy {
+        requireActivity() as MainActivity
+    }
 
-    //ViewModel
-    lateinit var viewModel: MainScreenViewModel
-    private lateinit var showMainScreenFragmentScope: Scope
-
-    private lateinit var adapterPokemon: AdapterMain
-
+    private val viewModel: MainScreenViewModel by viewModels()
+    private lateinit var adapterPokemon: MainScreenAdapter
     private var pokemonList = mutableListOf<CustomPokemonListItem>()
-
-
-    //Создание Scope для данного фрагмента
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        showMainScreenFragmentScope = KoinJavaComponent.getKoin().getOrCreateScope(
-            FragmentScope.SHOW_MAIN_SCREEN_FRAGMENT_SCOPE,
-            named(FragmentScope.SHOW_MAIN_SCREEN_FRAGMENT_SCOPE)
-        )
-    }
-
-    // Удаление скоупа для данного фрагмента
-    override fun onDetach() {
-        showMainScreenFragmentScope.close()
-        super.onDetach()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRv()
         initClickListeners()
         initSearchView()
-        initViewModel()
+        initObservers()
         initButtons()
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.getPokemonList()
+        }
     }
 
     //Инициализация кнопок
     private fun initButtons() {
         binding.mainScreenFragmentMapFAB.setOnClickListener {
-            router.navigateTo(screens.mapViewScreen())
+//            router.navigateTo(screens.mapViewScreen())
 
         }
         binding.mainScreenFragmentSavedFAB.setOnClickListener {
-            router.navigateTo(screens.savedScreen())
+//            router.navigateTo(screens.savedScreen())
         }
     }
 
@@ -79,10 +61,7 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
         Toast.makeText(requireContext(), "no items found", Toast.LENGTH_SHORT).show()
     }
 
-    //Инициализцая ViewModel
-    private fun initViewModel() {
-
-
+    private fun initObservers() {
         viewModel.pokemonList.observe(viewLifecycleOwner) { list ->
             when (list) {
                 is Resource.Success -> {
@@ -104,6 +83,7 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
                 is Resource.Error -> {
                     Log.d(TAG, list.message.toString())
                     showEmptyRecyclerViewError()
+
                 }
                 is Resource.Loading -> {
                 }
@@ -153,11 +133,11 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     }
 
     private fun initRv() {
-        adapterPokemon = AdapterMain()
+        adapterPokemon = MainScreenAdapter()
 
-        adapterPokemon.setOnClickListener(object : AdapterMain.OnClickListener {
+        adapterPokemon.setOnClickListener(object : MainScreenAdapter.OnClickListener {
             override fun onClick(item: CustomPokemonListItem) {
-                router.navigateTo(screens.detailsScreen())
+//                router.navigateTo(screens.detailsScreen())
             }
 
         })

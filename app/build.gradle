@@ -43,8 +43,8 @@ android {
 
 dependencies {
     // Подключение модулей
-    api project(":screens")
     api project(":utils")
+    api project(":repository")
 
     // Подключение библиотек
     //AndroidX
@@ -118,4 +118,11 @@ dependencies {
     //Nav
     implementation libs.nav.fragments
     implementation libs.nav.ui
+
+    //ViewModel
+    implementation libs.viewModel.navigationFragment
+    implementation libs.viewModel.navigationUI
+    implementation libs.viewModel.livedata
+    implementation libs.viewModel.lifecycle
+
 }

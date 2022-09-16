@@ -5,33 +5,30 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
+import com.example.pokemon.ui.main.MainActivity
 import com.example.screens.R
 import com.example.screens.adapter.SavedPokemonAdapter
 import com.example.screens.databinding.FragmentSavedPokemonBinding
-import com.example.screens.navigator.AppScreensImpl
 import com.example.screens.viewmodel.SavedFragmentViewModel
 import com.example.utils.Resource
-import com.github.terrakok.cicerone.Router
-import org.koin.java.KoinJavaComponent
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "SavedViewFragment"
 
+@AndroidEntryPoint
 class SavedViewFragment :
     BaseFragment<FragmentSavedPokemonBinding>(FragmentSavedPokemonBinding::inflate) {
 
+    val mainActivity: MainActivity by lazy {
+        requireActivity() as MainActivity
+    }
 
-    //Навигация
-    private val screens: AppScreensImpl = KoinJavaComponent.getKoin().get()
-    private val router: Router = KoinJavaComponent.getKoin().get()
-
-//    //ViewModel
-//    lateinit var viewModel: SavedFragmentViewModel
-
+    private val viewModel: SavedFragmentViewModel by viewModels()
     private lateinit var pokemonSavedListAdapter: SavedPokemonAdapter
 
     private var count = 0 // used to keep track of saved pokemon
@@ -41,11 +38,10 @@ class SavedViewFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        initViewModel()
 
         //setup backbutton
         binding.savedFragmentBack.setOnClickListener {
-            router.navigateTo(screens.mainScreen())
+//            router.navigateTo(screens.mainScreen())
         }
 
         //setup settings icon
@@ -54,11 +50,11 @@ class SavedViewFragment :
         }
 
 
-//        lifecycleScope.launchWhenStarted {
-//            setupRv()
-//            initObservers()
-//            viewModel.getPokemonSavedPokemon()
-//        }
+        lifecycleScope.launchWhenStarted {
+            setupRv()
+            initObservers()
+            viewModel.getPokemonSavedPokemon()
+        }
     }
 
 //    //Инициализцая ViewModel
@@ -105,34 +101,33 @@ class SavedViewFragment :
 
     // setup observers from viewmodel
 
-//    private fun initObservers() {
-//        viewModel.savedPokemon.observe(viewLifecycleOwner) { savedPokemon ->
-//            when (savedPokemon) {
-//                is Resource.Success -> {
-//                    savedPokemon.data?.let {
-//                        if (savedPokemon.data!!.isNotEmpty()) {
-//
-//                            count = savedPokemon.data!!.size
-//                            savedList = savedPokemon.data as MutableList<CustomPokemonListItem>
-//                            pokemonSavedListAdapter.setList(savedPokemon.data as MutableList<CustomPokemonListItem>)
-//                            binding.rvSavedFragment.invalidate()
-//                            pokemonSavedListAdapter.notifyDataSetChanged()
-//
-//                        }
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    Log.d(TAG, savedPokemon.message.toString())
-//                }
-//                is Resource.Loading -> {
-//                    Log.d(TAG, "LOADING")
-//                }
-//            }
-//
-//        }
-//    }
+    private fun initObservers() {
+        viewModel.savedPokemon.observe(viewLifecycleOwner) { savedPokemon ->
+            when (savedPokemon) {
+                is Resource.Success -> {
+                    savedPokemon.data?.let {
+                        if (savedPokemon.data!!.isNotEmpty()) {
 
-    // function to delete pokemon after bin png is clicked in Recyclerview
+                            count = savedPokemon.data!!.size
+                            savedList = savedPokemon.data as MutableList<CustomPokemonListItem>
+                            pokemonSavedListAdapter.setList(savedPokemon.data as MutableList<CustomPokemonListItem>)
+                            binding.rvSavedFragment.invalidate()
+                            pokemonSavedListAdapter.notifyDataSetChanged()
+
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                    Log.d(TAG, savedPokemon.message.toString())
+                }
+                is Resource.Loading -> {
+                    Log.d(TAG, "LOADING")
+                }
+            }
+
+        }
+    }
+
 
     private fun deletePokemon(customPokemonListItem: CustomPokemonListItem, pos: Int) {
 
@@ -149,7 +144,7 @@ class SavedViewFragment :
                 if (count == 0) {
 //                    binding.savedFragmentPlaceholder.isVisible = true
                 }
-//                viewModel.deletePokemon(customPokemonListItem)
+                viewModel.deletePokemon(customPokemonListItem)
 
             }
             .setNegativeButton("No") { dialog, id ->

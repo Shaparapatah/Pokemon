@@ -24,9 +24,16 @@ class SavedPokemonAdapter : RecyclerView.Adapter<SavedPokemonAdapter.SavedPokemo
             onDeleteListener: OnDeleteListener?,
             pos: Int
         ) {
-            binding.name.text = item.name.capitalize(Locale.ROOT) // captilise name
-            binding.type.text = "Type: ${item.type?.capitalize(Locale.ROOT)}"
-//            item.Image?.let { ImageLoader.loadImage(itemView.context, binding.image, it) }
+            binding.name.text =
+                item.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() } // captilise name
+            binding.type.text = "Type: ${
+                item.type.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(
+                        Locale.ROOT
+                    ) else it.toString()
+                }
+            }"
+            item.Image?.let { ImageLoader.loadImage(itemView.context, binding.image, it) }
 
 
             // setting click listener to be overridden in SavedFragment
