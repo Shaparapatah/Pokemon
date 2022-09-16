@@ -26,7 +26,7 @@ class SavedPokemonAdapter : RecyclerView.Adapter<SavedPokemonAdapter.SavedPokemo
         ) {
             binding.name.text = item.name.capitalize(Locale.ROOT) // captilise name
             binding.type.text = "Type: ${item.type?.capitalize(Locale.ROOT)}"
-            item.Image?.let { ImageLoader.loadImage(itemView.context, binding.image, it) }
+//            item.Image?.let { ImageLoader.loadImage(itemView.context, binding.image, it) }
 
 
             // setting click listener to be overridden in SavedFragment

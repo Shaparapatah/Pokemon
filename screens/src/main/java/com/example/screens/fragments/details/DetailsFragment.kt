@@ -148,7 +148,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
     private fun setupView(pokemon: PokemonDetailItem) {
         // load image
         pokemon.sprites.otherSprites.artwork.front_default?.let { image ->
-            ImageLoader.loadImage(requireContext(), binding.detailFragmentImage, image)
+//            ImageLoader.loadImage(requireContext(), binding.detailFragmentImage, image)
         }
 
 
@@ -234,14 +234,14 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
         }
 
         // setup last location plot on map
-        mPokemon.Image?.let { ImageLoader.loadImage(requireContext(), binding.mapviewPlot, it) }
+//        mPokemon.Image?.let { ImageLoader.loadImage(requireContext(), binding.mapviewPlot, it) }
 
         // set up random position
-        ImageLoader.setMargins(
-            binding.mapviewPlot,
-            viewModel.plotLeft,
-            viewModel.plotTop
-        )
+//        ImageLoader.setMargins(
+//            binding.mapviewPlot,
+//            viewModel.plotLeft,
+//            viewModel.plotTop
+//        )
 
 
     }

@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.model.dto.CustomPokemonListItem
-import com.example.repository.main.DefaultRepository
+import com.example.repository.main.Repository
 import com.example.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class SavedFragmentViewModel(private val repository: DefaultRepository) :
+class SavedFragmentViewModel(private val repository: Repository) :
     ViewModel() {
 
     private val _savedPokemon = MutableLiveData<Resource<List<CustomPokemonListItem>>>()

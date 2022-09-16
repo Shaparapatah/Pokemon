@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 
 object ImageLoader {
@@ -14,10 +13,11 @@ object ImageLoader {
     fun loadImage(context: Context, ImageView: ImageView, url: String) {
         Glide.with(context)
             .load(url)
-            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+            .override(SIZE_ORIGINAL, SIZE_ORIGINAL)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(ImageView);
     }
+
 
     fun loadImageDrawable(imageView: ImageView, drawable: Int) {
         Glide.with(imageView.context)
@@ -29,7 +29,7 @@ object ImageLoader {
     fun loadImageDrawable(context: Context, ImageView: ImageView, drawable: Int) {
         Glide.with(context)
             .load(drawable)
-            .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+            .override(SIZE_ORIGINAL, SIZE_ORIGINAL)
             .placeholder(R.drawable.place_holder_image)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .into(ImageView);

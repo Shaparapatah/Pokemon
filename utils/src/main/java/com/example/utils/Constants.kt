@@ -212,8 +212,12 @@ object Constants {
 
             )
         )
-
         return customPokemonListItem
+    }
+}
 
+class FragmentScope {
+    companion object {
+        const val SHOW_MAIN_SCREEN_FRAGMENT_SCOPE = "SHOW_MAIN_SCREEN_FRAGMENT_SCOPE"
     }
 }

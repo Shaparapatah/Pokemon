@@ -1,24 +1,24 @@
 package com.example.screens.fragments.mainscreen
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
-import com.example.screens.adapter.MainScreenAdapter
+import com.example.screens.adapter.AdapterMain
 import com.example.screens.databinding.FragmentMainScreenBinding
 import com.example.screens.dialogs.FilterDialog
 import com.example.screens.navigator.AppScreensImpl
 import com.example.screens.viewmodel.MainScreenViewModel
+import com.example.utils.FragmentScope
 import com.example.utils.Resource
 import com.github.terrakok.cicerone.Router
+import org.koin.core.qualifier.named
+import org.koin.core.scope.Scope
 import org.koin.java.KoinJavaComponent
 
 private const val TAG = "MainScreenFragment"
@@ -33,67 +33,83 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     private val router: Router = KoinJavaComponent.getKoin().get()
 
     //ViewModel
-//    private lateinit var viewModel: MainScreenViewModel
+    lateinit var viewModel: MainScreenViewModel
+    private lateinit var showMainScreenFragmentScope: Scope
 
-    //Adapter
-    lateinit var pokemonListAdapter: MainScreenAdapter
-
+    private lateinit var adapterPokemon: AdapterMain
 
     private var pokemonList = mutableListOf<CustomPokemonListItem>()
 
+
+    //Создание Scope для данного фрагмента
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        showMainScreenFragmentScope = KoinJavaComponent.getKoin().getOrCreateScope(
+            FragmentScope.SHOW_MAIN_SCREEN_FRAGMENT_SCOPE,
+            named(FragmentScope.SHOW_MAIN_SCREEN_FRAGMENT_SCOPE)
+        )
+    }
+
+    // Удаление скоупа для данного фрагмента
+    override fun onDetach() {
+        showMainScreenFragmentScope.close()
+        super.onDetach()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-//        initRv()
+        initRv()
         initClickListeners()
-//        initSearchView()
-//        setupAlert()
-//        setupFabButtons()
-//        initObservers()
-//        initViewModel()
+        initSearchView()
+        initViewModel()
         initButtons()
-//        initObservers()
-
-//
-//        lifecycleScope.launchWhenStarted {
-//            viewModel.getPokemonList()
-//        }
-
     }
 
     //Инициализация кнопок
     private fun initButtons() {
         binding.mainScreenFragmentMapFAB.setOnClickListener {
-
-//            findNavController().navigate(R.id.action_listFragment_to_mapViewFragment)
             router.navigateTo(screens.mapViewScreen())
 
         }
         binding.mainScreenFragmentSavedFAB.setOnClickListener {
             router.navigateTo(screens.savedScreen())
-//            findNavController().navigate(R.id.action_listFragment_to_savedViewFragment)
         }
+    }
 
-
+    private fun showEmptyRecyclerViewError() {
+        Toast.makeText(requireContext(), "no items found", Toast.LENGTH_SHORT).show()
     }
 
     //Инициализцая ViewModel
-//    private fun initViewModel() {
-//        lifecycleScope.launchWhenStarted {
-//            viewModel.getPokemonList()
-//        }
-//    }
+    private fun initViewModel() {
 
-//    private fun setupFabButtons() {
-////        binding.listFragmentMapFAB.setOnClickListener {
-////
-////            findNavController().navigate(R.id.action_listFragment_to_mapViewFragment)
-////
-////
-////        }
-////        binding.listFragmentSavedFAB.setOnClickListener {
-////            findNavController().navigate(R.id.action_listFragment_to_savedViewFragment)
-////        }
-////    }
+
+        viewModel.pokemonList.observe(viewLifecycleOwner) { list ->
+            when (list) {
+                is Resource.Success -> {
+                    Log.d(TAG, list.data.toString())
+                    if (list.data != null) {
+                        if (list.data!!.isNotEmpty()) {
+                            Log.d(TAG, list.data.toString())
+                            pokemonList = list.data as ArrayList<CustomPokemonListItem>
+                            adapterPokemon.setList(list.data as ArrayList<CustomPokemonListItem>)
+                            binding.rvMainScreenFragment.invalidate()
+                            adapterPokemon.notifyDataSetChanged()
+                        } else {
+                            showEmptyRecyclerViewError()
+                        }
+                    } else {
+                        showEmptyRecyclerViewError()
+                    }
+                }
+                is Resource.Error -> {
+                    Log.d(TAG, list.message.toString())
+                    showEmptyRecyclerViewError()
+                }
+                is Resource.Loading -> {
+                }
+            }
+        }
+    }
 
     private fun initClickListeners() {
         binding.mainScreenFilterImg.setOnClickListener {
@@ -104,191 +120,59 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
         }
     }
 
-//
-//    private fun initSearchView() {
-//        binding.mainScreenSearchView.setOnClickListener {
-//            if (binding.mainScreenSearchView.query.isEmpty()) {
-//                viewModel.getPokemonList()
-//            }
 
-//        }
-//        binding.mainScreenSearchView.setOnQueryTextListener(object :
-//            SearchView.OnQueryTextListener {
-//
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                if (query != null) {
-//                    viewModel.searchPokemonByName(query)
-//                } else {
-//                    viewModel.getPokemonList()
-//                }
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                if (newText != null) {
-//                    // search DB after two letters are typed
-//                    if (newText.length > 2) {
-//                        Log.d(TAG, newText)
-//                        viewModel.searchPokemonByName(newText)
-//                    }
-//                }
-//                return false
-//            }
-//
-//        })
-//    }
-//
-//    private fun setupAlert() {
-//        val workerStatusPref =
-//            context?.getSharedPreferences("worker", AppCompatActivity.MODE_PRIVATE)
-//
-//        val workerStatus = workerStatusPref?.getString("worker", "")
-//
-//        if (workerStatus!! == "cancel") {
-//            val builder = AlertDialog.Builder(requireContext()) // using custom theme
-//            builder.setMessage("Re-enable background searching?")
-//                .setCancelable(false)
-//                .setPositiveButton("Yes") { dialog, id ->
-//
-//                    // disable work manager tasks
-//                    val pref =
-//                        context?.getSharedPreferences("worker", AppCompatActivity.MODE_PRIVATE)
-//                    val editor = pref?.edit()
-//
-//                    editor?.let {
-//                        editor.putString("worker", "enabled")
-//                        editor.commit()
-//                    }
-//                    Toast.makeText(requireContext(), "Background tasks enabled", Toast.LENGTH_SHORT)
-//                        .show()
-//
-//                }
-//                .setNegativeButton("No") { dialog, id ->
-//                    // Dismiss the dialog
-//                    dialog.dismiss()
-//                }
-//            val alert = builder.create()
-//            alert.show()
-//        } else {
-//            val builder = AlertDialog.Builder(requireContext()) // using custom theme
-//            builder.setMessage("Disable background pokemon search tasks ?")
-//                .setCancelable(false)
-//                .setPositiveButton("Yes") { dialog, id ->
-//
-//                    // disable work manager tasks
-//                    val pref =
-//                        context?.getSharedPreferences("worker", AppCompatActivity.MODE_PRIVATE)
-//                    val editor = pref?.edit()
-//
-//                    editor?.let {
-//                        editor.putString("worker", "cancel")
-//                        editor.commit()
-//                    }
-//                    Toast.makeText(
-//                        requireContext(),
-//                        "Background tasks cancelled",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//
-//                }
-//                .setNegativeButton("No") { dialog, id ->
-//                    // Dismiss the dialog
-//                    dialog.dismiss()
-//                }
-//            val alert = builder.create()
-//            alert.show()
-//        }
-//    }
-//
-//    private fun initRv() {
-//        pokemonListAdapter = MainScreenAdapter()
-//
-//        // setup on click for RecyclerView Items
-//
-//        pokemonListAdapter.setOnClickListener(object : MainScreenAdapter.OnClickListener {
-//            override fun onClick(item: CustomPokemonListItem) {
-//                router.navigateTo(screens.detailsScreen())
-////
-////                val bundle = Bundle()
-////                bundle.putParcelable("pokemon", item)
-////                findNavController().navigate(R.id.action_listFragment_to_detailFragment, bundle)
-//            }
-//
-//        })
-//
-//        binding.rvMainScreenFragment.apply {
-//            adapter = pokemonListAdapter
-//        }
-//
-//    }
+    private fun initSearchView() {
+        binding.mainScreenSearchView.setOnClickListener {
+            if (binding.mainScreenSearchView.query.isEmpty()) {
+                viewModel.getPokemonList()
+            }
 
+        }
+        binding.mainScreenSearchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
 
-//    // intialise Observers for liveData objects in ViewModel
-//    private fun initObservers() {
-//        viewModel.pokemonList.observe(viewLifecycleOwner, Observer { list ->
-//            when (list) {
-//                is Resource.Success -> {
-//                    Log.d(TAG, list.data.toString())
-//                    if (list.data != null) {
-//                        if (list.data!!.isNotEmpty()) {
-//                            Log.d(TAG, list.data.toString())
-//                            pokemonList = list.data as ArrayList<CustomPokemonListItem>
-//                            pokemonListAdapter.setList(list.data as ArrayList<CustomPokemonListItem>)
-//                            binding.rvMainScreenFragment.invalidate()
-//                            pokemonListAdapter.notifyDataSetChanged()
-//                            //  showProgressbar(false)
-//
-//                            // swipe to refresh layout is used then lets stop the refresh animation here
-////                            if (binding.listFragmentSwipeToRefresh.isRefreshing) {
-////                                binding.listFragmentSwipeToRefresh.isRefreshing = false
-////                            }
-//                        } else {
-//                            // setup empty recyclerview
-//                            //    showProgressbar(false)
-//                            showEmptyRecyclerViewError()
-//
-//                        }
-//                    } else {
-//                        showEmptyRecyclerViewError()
-//                    }
-//
-//                }
-//                is com.example.utils.Resource.Error -> {
-//                    Log.d(TAG, list.message.toString())
-//                    //  showProgressbar(false)
-//                    // setup empty recyclerview
-//                    showEmptyRecyclerViewError()
-//
-//                }
-//                is com.example.utils.Resource.Loading -> {
-//                    //   showProgressbar(true)
-//                }
-//            }
-//        })
-//    }
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    viewModel.searchPokemonByName(query)
+                } else {
+                    viewModel.getPokemonList()
+                }
+                return false
+            }
 
-    private fun showEmptyRecyclerViewError() {
-        Toast.makeText(requireContext(), "no items found", Toast.LENGTH_SHORT).show()
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    if (newText.length > 2) {
+                        Log.d(TAG, newText)
+                        viewModel.searchPokemonByName(newText)
+                    }
+                }
+                return false
+            }
+        })
     }
 
+    private fun initRv() {
+        adapterPokemon = AdapterMain()
 
-//    private fun showProgressbar(isVisible: Boolean) {
-//        binding.listFragmentProgress.isVisible = isVisible
-//    }
+        adapterPokemon.setOnClickListener(object : AdapterMain.OnClickListener {
+            override fun onClick(item: CustomPokemonListItem) {
+                router.navigateTo(screens.detailsScreen())
+            }
 
-// get type chosen by user in dialog
-//
-//    override fun typeToSearch(type: String) {
-//        Log.d(TAG, type)
-//        viewModel.searchPokemonByType(type)
-//    }
-
-    companion object {
-        fun newInstance(): MainScreenFragment = MainScreenFragment()
+        })
+        binding.rvMainScreenFragment.apply {
+            adapter = adapterPokemon
+        }
     }
 
     override fun typeToSearch(type: String) {
-        TODO("Not yet implemented")
+        Log.d(TAG, type)
+        viewModel.searchPokemonByType(type)
+    }
+
+    companion object {
+        fun newInstance(): MainScreenFragment = MainScreenFragment()
     }
 
 }

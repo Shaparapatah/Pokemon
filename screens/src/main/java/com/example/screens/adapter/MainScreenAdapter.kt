@@ -10,7 +10,7 @@ import java.util.*
 
 class MainScreenAdapter : RecyclerView.Adapter<MainScreenAdapter.MainScreenViewHolder>() {
 
-    private var onClickListener: OnClickListener? = null
+//    private var onClickListener: OnClickListener? = null
     private var pokemonList = mutableListOf<CustomPokemonListItem>()
 
 
@@ -31,7 +31,7 @@ class MainScreenAdapter : RecyclerView.Adapter<MainScreenAdapter.MainScreenViewH
                 onClickListener?.onClick(item)
             }
 
-            item.Image?.let { ImageLoader.loadImage(itemView.context, binding.image, it) }
+//            item.Image?.let { ImageLoader.loadImage(itemView.context, binding.image, it) }
         }
     }
 
@@ -40,7 +40,7 @@ class MainScreenAdapter : RecyclerView.Adapter<MainScreenAdapter.MainScreenViewH
     }
 
     fun setOnClickListener(onClickListener: OnClickListener) {
-        this.onClickListener = onClickListener
+//        this.onClickListener = onClickListener
     }
 
     fun setList(list: List<CustomPokemonListItem>) {
@@ -52,7 +52,7 @@ class MainScreenAdapter : RecyclerView.Adapter<MainScreenAdapter.MainScreenViewH
     }
 
     override fun onBindViewHolder(holder: MainScreenViewHolder, position: Int) {
-        holder.bind(pokemonList[position], onClickListener)
+//        holder.bind(pokemonList[position], onClickListener)
     }
 
     override fun getItemCount() = pokemonList.size

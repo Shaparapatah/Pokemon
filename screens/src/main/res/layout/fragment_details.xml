@@ -167,8 +167,5 @@
             android:orientation="vertical"
             android:padding="10dp" />
 
-
     </RelativeLayout>
-
-
 </ScrollView>
