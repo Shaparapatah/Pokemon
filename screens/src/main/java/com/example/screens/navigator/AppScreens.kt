@@ -1,4 +1,4 @@
-package com.example.core.base
+package com.example.screens.navigator
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 

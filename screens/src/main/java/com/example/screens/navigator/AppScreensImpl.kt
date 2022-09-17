@@ -1,6 +1,5 @@
 package com.example.screens.navigator
 
-import com.example.core.base.AppScreens
 import com.example.screens.fragments.details.DetailsFragment
 import com.example.screens.fragments.mainscreen.MainScreenFragment
 import com.example.screens.fragments.map.MapViewFragment

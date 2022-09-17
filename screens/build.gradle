@@ -41,7 +41,6 @@ android {
 dependencies {
     // Подключение модулей
     api project(":core")
-    api project(":app")
     api project(":utils")
     api project(":repository")
 
@@ -112,4 +111,9 @@ dependencies {
     implementation libs.hilt.dagger
     //Circular Image
     implementation libs.circular.imageview
+
+    //Nav
+    implementation libs.nav.fragments
+    implementation libs.nav.ui
+    implementation libs.nav.lifecycle
 }

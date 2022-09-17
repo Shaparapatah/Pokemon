@@ -9,8 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.pokemon.ui.main.base.BaseFragment
-import com.example.pokemon.ui.main.MainActivity
+import com.example.core.base.BaseFragment
 import com.example.screens.databinding.FragmentMapBinding
 import com.example.screens.viewmodel.MapViewModel
 import com.example.utils.ImageLoader
@@ -20,12 +19,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "MapViewFragment"
 
-@AndroidEntryPoint
+
 class MapViewFragment : BaseFragment<FragmentMapBinding>(FragmentMapBinding::inflate) {
 
-    val mainActivity: MainActivity by lazy {
-        requireActivity() as MainActivity
-    }
+//    val mainActivity: MainActivity by lazy {
+//        requireActivity() as MainActivity
+//    }
 
 
     private val viewModel: MapViewModel by viewModels()

@@ -8,32 +8,34 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.pokemon.ui.main.base.BaseFragment
+import androidx.navigation.fragment.findNavController
+import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
-import com.example.pokemon.ui.main.MainActivity
+import com.example.screens.R
 import com.example.screens.adapter.MainScreenAdapter
 import com.example.screens.databinding.FragmentMainScreenBinding
 import com.example.screens.dialogs.FilterDialog
 import com.example.screens.viewmodel.MainScreenViewModel
 import com.example.utils.Resource
-import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "MainScreenFragment"
 
-@AndroidEntryPoint
+
 class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     FragmentMainScreenBinding::inflate
 ), FilterDialog.TypePicker {
 
-    val mainActivity: MainActivity by lazy {
-        requireActivity() as MainActivity
-    }
+//    val mainActivity: MainActivity by lazy {
+//        requireActivity() as MainActivity
+//    }
 
     private val viewModel: MainScreenViewModel by viewModels()
     private lateinit var adapterPokemon: MainScreenAdapter
     private var pokemonList = mutableListOf<CustomPokemonListItem>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
         initRv()
         initClickListeners()
         initSearchView()
@@ -48,11 +50,11 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     //Инициализация кнопок
     private fun initButtons() {
         binding.mainScreenFragmentMapFAB.setOnClickListener {
-//            router.navigateTo(screens.mapViewScreen())
+            findNavController().navigate(R.id.action_mainScreenFragment_to_mapViewFragment)
 
         }
         binding.mainScreenFragmentSavedFAB.setOnClickListener {
-//            router.navigateTo(screens.savedScreen())
+            findNavController().navigate(R.id.action_mainScreenFragment_to_savedViewFragment)
         }
     }
 
@@ -136,7 +138,12 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
 
         adapterPokemon.setOnClickListener(object : MainScreenAdapter.OnClickListener {
             override fun onClick(item: CustomPokemonListItem) {
-//                router.navigateTo(screens.detailsScreen())
+                val bundle = Bundle()
+                bundle.putParcelable("pokemon", item)
+                findNavController().navigate(
+                    R.id.action_savedViewFragment_to_detailFragment,
+                    bundle
+                )
             }
 
         })

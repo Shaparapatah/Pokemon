@@ -8,9 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.pokemon.ui.main.base.BaseFragment
+import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
-import com.example.pokemon.ui.main.MainActivity
 import com.example.screens.R
 import com.example.screens.adapter.SavedPokemonAdapter
 import com.example.screens.databinding.FragmentSavedPokemonBinding
@@ -20,13 +19,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "SavedViewFragment"
 
-@AndroidEntryPoint
+
 class SavedViewFragment :
     BaseFragment<FragmentSavedPokemonBinding>(FragmentSavedPokemonBinding::inflate) {
 
-    val mainActivity: MainActivity by lazy {
-        requireActivity() as MainActivity
-    }
+//    val mainActivity: MainActivity by lazy {
+//        requireActivity() as MainActivity
+//    }
 
     private val viewModel: SavedFragmentViewModel by viewModels()
     private lateinit var pokemonSavedListAdapter: SavedPokemonAdapter

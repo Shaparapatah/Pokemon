@@ -45,7 +45,10 @@ dependencies {
     // Подключение модулей
     api project(":utils")
     api project(":repository")
+    api project(":screens")
     api project(":core")
+
+
 
 
     // Подключение библиотек
@@ -100,8 +103,8 @@ dependencies {
     // Koin for Tests
     testImplementation libs.koin.testsandroidx
     testImplementation libs.koin.testsio
-    //Hilt-dagger
-    implementation libs.hilt.dagger
+//    //Hilt-dagger
+//    implementation libs.hilt.dagger
 //    kapt libs.hilt.compiler
     //Retrofit
     implementation libs.retrofit.runtime
@@ -120,11 +123,20 @@ dependencies {
     //Nav
     implementation libs.nav.fragments
     implementation libs.nav.ui
+    implementation libs.nav.lifecycle
 
     //ViewModel
     implementation libs.viewModel.navigationFragment
     implementation libs.viewModel.navigationUI
     implementation libs.viewModel.livedata
     implementation libs.viewModel.lifecycle
+
+    //Dagger
+    implementation libs.dagger.dagger
+    implementation libs.dagger.runtime
+    implementation libs.dagger.support
+    implementation libs.dagger.processor
+    implementation libs.dagger.compiler
+    implementation libs.dagger.addsupport
 
 }

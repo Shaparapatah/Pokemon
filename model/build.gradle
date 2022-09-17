@@ -93,4 +93,6 @@ dependencies {
     kapt libs.room.compiler
     implementation libs.room.ktx
     implementation libs.room.gson
+    // Cicerone
+    implementation libs.cicerony.runtime
 }

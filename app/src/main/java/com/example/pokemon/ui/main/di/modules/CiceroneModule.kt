@@ -1,6 +1,7 @@
-package com.example.pokemon.ui.main.modules
+package com.example.pokemon.ui.main.di.modules
 
-import com.example.core.base.AppScreens
+import com.example.screens.navigator.AppScreens
+import com.example.screens.navigator.AppScreensImpl
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -29,6 +30,6 @@ class CiceroneModule {
     @Provides
 
     fun appScreens(): AppScreens {
-      return 
+        return AppScreensImpl()
     }
 }

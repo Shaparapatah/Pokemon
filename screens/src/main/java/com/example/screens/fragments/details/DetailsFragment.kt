@@ -9,10 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
-import com.example.pokemon.ui.main.base.BaseFragment
+import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
 import com.example.model.dto.PokemonDetailItem
-import com.example.pokemon.ui.main.MainActivity
 import com.example.screens.databinding.FragmentDetailsBinding
 import com.example.screens.viewmodel.DetailsFragmentViewModel
 import com.example.utils.ImageLoader
@@ -22,13 +21,13 @@ import java.util.*
 
 private const val TAG = "DetailsFragment"
 
-@AndroidEntryPoint
+
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
     FragmentDetailsBinding::inflate
 ) {
-    val mainActivity: MainActivity by lazy {
-        requireActivity() as MainActivity
-    }
+//    val mainActivity: MainActivity by lazy {
+//        requireActivity() as MainActivity
+//    }
 
     private val viewModel: DetailsFragmentViewModel by viewModels()
     lateinit var mPokemon: CustomPokemonListItem
