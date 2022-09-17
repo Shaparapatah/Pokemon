@@ -8,25 +8,23 @@
 
 
     <FrameLayout
-        android:layout_width="61dp"
-        android:layout_height="49dp"
+        android:layout_width="@dimen/width_frame_layout_main_screen"
+        android:layout_height="@dimen/height_frame_layout_main_screen"
         android:background="@color/background800"
         app:layout_constraintBottom_toTopOf="@id/rv_main_screen_fragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/main_screen_search_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/main_screen_filter_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="13dp"
+            android:layout_marginStart="@dimen/margin_start_main_screen_filter_img"
+            android:layout_marginTop="@dimen/margin_top_main_screen_filter_img"
+            android:layout_marginEnd="@dimen/margin_end_main_screen_filter_img"
+            android:layout_marginBottom="@dimen/margin_bottom_main_screen_filter_img"
             android:src="@drawable/ic_filter"
             app:layout_constraintBottom_toTopOf="@+id/rv_main_screen_fragment"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +36,8 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/main_screen_search_view"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/width_search_view_main_screen"
+        android:layout_height="@dimen/height_search_view_main_screen"
         android:background="@color/background800"
         android:clickable="true"
         android:focusable="true"
@@ -55,7 +53,7 @@
         android:id="@+id/rv_main_screen_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/padding_rv_main_screen"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,21 +64,21 @@
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/main_screen_fragment_saved_FAB"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_margin="24dp"
+        android:layout_width="@dimen/width_main_screen_fragment_saved_FAB"
+        android:layout_height="@dimen/height_main_screen_fragment_saved_FAB"
+        android:layout_margin="@dimen/margin_main_screen_fragment_saved_FAB"
         android:src="@drawable/ic__pokeball"
         app:civ_border="false"
         app:civ_shadow="true"
-        app:civ_shadow_radius="2dp"
+        app:civ_shadow_radius="@dimen/radius_main_screen_fragment_saved_FAB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/main_screen_fragment_map_FAB"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_margin="24dp"
+        android:layout_width="@dimen/width_main_screen_fragment_map_FAB"
+        android:layout_height="@dimen/height_main_screen_fragment_map_FAB"
+        android:layout_margin="@dimen/margin_main_screen_fragment_map_FAB"
         android:src="@drawable/ic_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />

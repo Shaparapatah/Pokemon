@@ -3,4 +3,8 @@
     <string name="item_pokemon_type">type</string>
     <string name="search_pokemon_by_type">Поиск Покемона по типу</string>
     <string name="text_btn_dialog">Отмена</string>
+    <string name="text_button_details_fragment">Сохранить Покемона</string>
+    <string name="text_title_stats">Статистика</string>
+    <string name="text_abilities_detail_fragment">Способности</string>
+    <string name="text_map_details_fragment">Карта Покемонов</string>
 </resources>

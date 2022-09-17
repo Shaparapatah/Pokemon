@@ -14,18 +14,12 @@ import com.example.screens.databinding.FragmentMapBinding
 import com.example.screens.viewmodel.MapViewModel
 import com.example.utils.ImageLoader
 import com.example.utils.Resource
-import dagger.hilt.android.AndroidEntryPoint
 
 
 private const val TAG = "MapViewFragment"
 
 
 class MapViewFragment : BaseFragment<FragmentMapBinding>(FragmentMapBinding::inflate) {
-
-//    val mainActivity: MainActivity by lazy {
-//        requireActivity() as MainActivity
-//    }
-
 
     private val viewModel: MapViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,10 +29,7 @@ class MapViewFragment : BaseFragment<FragmentMapBinding>(FragmentMapBinding::inf
         binding.mapFragmentBack.setOnClickListener {
 //            router.navigateTo(screens.mainScreen())
         }
-
-
         initObservers()
-
         lifecycleScope.launchWhenStarted {
             viewModel.getPokemonList()
         }

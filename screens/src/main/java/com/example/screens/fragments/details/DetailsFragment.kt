@@ -7,7 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
@@ -16,7 +19,6 @@ import com.example.screens.databinding.FragmentDetailsBinding
 import com.example.screens.viewmodel.DetailsFragmentViewModel
 import com.example.utils.ImageLoader
 import com.example.utils.Resource
-import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 private const val TAG = "DetailsFragment"
@@ -25,9 +27,6 @@ private const val TAG = "DetailsFragment"
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
     FragmentDetailsBinding::inflate
 ) {
-//    val mainActivity: MainActivity by lazy {
-//        requireActivity() as MainActivity
-//    }
 
     private val viewModel: DetailsFragmentViewModel by viewModels()
     lateinit var mPokemon: CustomPokemonListItem
@@ -35,7 +34,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // checking for details passed from list fragment
         arguments?.let {
             it.getParcelable<CustomPokemonListItem>("pokemon")?.let { pokemon ->
                 mPokemon = pokemon
@@ -51,8 +49,6 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
             }
         }
 
-        // setup saveButton clickListener if pokemon is not saved
-
         if (this::mPokemon.isInitialized) {
             if (mPokemon.isSaved == "false") {
                 binding.detailFragmentSaveButton.setOnClickListener {
@@ -63,10 +59,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
             } else {
                 binding.detailFragmentSaveButton.text = "Saved"
             }
-
         }
-
-
     }
 
     private fun setType(type: String) {
@@ -84,16 +77,14 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
                         Log.d(TAG, pokemon.abilities.toString())
                         Log.d(TAG, pokemon.stat.toString())
                         Log.d(TAG, pokemon.types.toString())
-
                         setupView(pokemon)
-
                     }
                 }
                 is Resource.Error -> {
                     Log.d(TAG, pokemondetails.message.toString())
                     Toast.makeText(
                         requireContext(),
-                        "Error retrieving results please check internet connection",
+                        "Ошибка, проверьте подключение к интернету",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -103,24 +94,17 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
                 is Resource.Expired -> {
                     pokemondetails.data?.let { pokemon ->
                         setupView(pokemon)
-
-                        //inform user that cache has expired and we cannot retrieve up to date details
                         Toast.makeText(
                             requireContext(),
-                            "Unable to retrieve up to date details !, please check network connectivity",
+                            "Ошибка получения данных, проверьте подключение к интернету",
                             Toast.LENGTH_SHORT
                         )
                             .show()
-
                     }
                 }
             }
-
         }
-
-
         viewModel.pokemonSaveIntent.observe(viewLifecycleOwner) { status ->
-
             if (status) {
                 Toast.makeText(
                     requireContext(),
@@ -128,19 +112,16 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
         }
     }
 
-    //Setup Pokemon card info
     private fun setupView(pokemon: PokemonDetailItem) {
-        // load image
         pokemon.sprites.otherSprites.artwork.front_default?.let { image ->
-//            ImageLoader.loadImage(requireContext(), binding.detailFragmentImage, image)
+            ImageLoader.loadImage(requireContext(), binding.detailFragmentImage, image)
         }
 
 
-        // load abilities
+        // загрузка способностей Покемона
 
         for (i in pokemon.abilities) {
             val textView = TextView(requireContext())
@@ -159,8 +140,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
         val pokemonstats = mutableListOf<Int>()
 
 
-        // load stats
-
+        // загруска статуса
         for (i in pokemon.stat) {
             val textView = TextView(requireContext())
             val progressBar = ProgressBar(requireContext(), null, R.attr.progressBarStyleHorizontal)
@@ -180,58 +160,15 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
 
         }
 
-        // setup stars
-        //if average of pokemon stats is less than 60 leave at one star if more than 60 but less than 80 then show 2 stars,more than 80 3 stars
-        val pokemonAverage = pokemonstats.sum() / 6
-
-        Log.d(TAG, "pokemon aveage is $pokemonAverage")
-
-        // get dp value by checking screenSize
-        val dp = (40 * (context?.resources?.displayMetrics?.density!!)).toInt()
-
-        if (pokemonAverage in 61..79) {
-            // add 1 star
-
-
-            Log.d(TAG, "adding 1 star pokemon aveage is $pokemonAverage")
-            val img = ImageView(requireContext())
-            val lp = LinearLayout.LayoutParams(dp, dp) //make the image same size as first star
-            img.layoutParams = lp
-////            ImageLoader.loadImageDrawable(requireContext(), img, R.drawable.star)
-//
-//            binding.detailFragmentStarContainer.addView(img)
-
-        }
-
-        if (pokemonAverage > 79) {
-            // add 2 stars
-
-
-            Log.d(TAG, "adding 1 star pokemon aveage is $pokemonAverage")
-            val img = ImageView(requireContext())
-            val img2 = ImageView(requireContext())
-            val lp = LinearLayout.LayoutParams(dp, dp) //make the image same size as first star
-            img.layoutParams = lp
-            img2.layoutParams = lp
-//            ImageUtils.loadImageDrawable(requireContext(), img, R.drawable.star)
-//            ImageUtils.loadImageDrawable(requireContext(), img2, R.drawable.star)
-
-//            binding.detailFragmentStarContainer.addView(img)
-//            binding.detailFragmentStarContainer.addView(img2)
-
-        }
-
-        // setup last location plot on map
+        // отображение на карте
         mPokemon.Image?.let { ImageLoader.loadImage(requireContext(), binding.mapviewPlot, it) }
 
-        // set up random position
+        // рандомная позиция
         ImageLoader.setMargins(
             binding.mapviewPlot,
             viewModel.plotLeft,
             viewModel.plotTop
         )
-
-
     }
 
     private fun getPokemonDetails(id: Int?) {

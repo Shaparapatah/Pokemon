@@ -17,7 +17,7 @@ import javax.inject.Inject
 class DetailsFragmentViewModel @Inject constructor(private val repository: Repository) :
     ViewModel() {
 
-    // single live event to stop stale items being stored in Live Data
+
     private val _pokemonDetails = SingleLiveEvent<Resource<PokemonDetailItem>>()
     val pokemonDetails: LiveData<Resource<PokemonDetailItem>>
         get() = _pokemonDetails
@@ -27,7 +27,6 @@ class DetailsFragmentViewModel @Inject constructor(private val repository: Repos
     val pokemonSaveIntent: LiveData<Boolean>
         get() = _pokemonSaveIntent
 
-    // value for map plotting, held in view model to ensure the same location is plotted after rotation
 
     val plotLeft = (0..600).random()
     val plotTop = (0..600).random()

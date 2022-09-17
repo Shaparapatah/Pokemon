@@ -11,12 +11,12 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="6dp"
+        android:layout_margin="@dimen/margin_cardView"
         android:background="@color/background800"
         android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/white_12"
-        app:cardCornerRadius="14dp"
-        app:cardElevation="4dp">
+        app:cardCornerRadius="@dimen/corner_radius_cardView"
+        app:cardElevation="@dimen/card_elevation_cardView">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,9 +28,9 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="20dp"
+                android:layout_width="@dimen/width_image"
+                android:layout_height="@dimen/height_image"
+                android:layout_margin="@dimen/margin_image"
                 android:scaleType="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,12 +41,12 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="4dp"
+                android:elevation="@dimen/elevation_name"
                 android:gravity="center"
                 android:maxLines="1"
-                android:padding="12dp"
+                android:padding="@dimen/padding_name"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_name"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,15 +55,15 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/type"
-                android:layout_width="78dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="45dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginEnd="16dp"
-                android:elevation="4dp"
+                android:layout_width="@dimen/width_type"
+                android:layout_height="@dimen/height_type"
+                android:layout_marginStart="@dimen/margin_start_type"
+                android:layout_marginTop="@dimen/margin_top_type"
+                android:layout_marginEnd="@dimen/margin_end_type"
+                android:elevation="@dimen/elevation_type"
                 android:gravity="center"
                 android:maxLines="1"
-                android:padding="12dp"
+                android:padding="@dimen/padding_type"
                 android:text="@string/item_pokemon_type"
                 android:textColor="@color/white"
                 android:textSize="16sp"

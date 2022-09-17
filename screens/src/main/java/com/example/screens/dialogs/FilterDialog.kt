@@ -15,7 +15,7 @@ class FilterDialog(var fragmentlistener: TypePicker) : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setRetainInstance(true) // used to retain fragment configuration on rotation
+        setRetainInstance(true)
     }
 
 
@@ -36,38 +36,32 @@ class FilterDialog(var fragmentlistener: TypePicker) : DialogFragment() {
 
 
         fireImg.setOnClickListener {
-            // pass type back to list fragment
             listener?.typeToSearch("fire")
             this.dismiss()
         }
 
         waterImg.setOnClickListener {
-            // pass type back to list fragment
             listener?.typeToSearch("water")
             this.dismiss()
         }
 
         grassImg.setOnClickListener {
-            // pass type back to list fragment
             listener?.typeToSearch("grass")
             this.dismiss()
         }
 
         cancelBtn.setOnClickListener {
-            //close helpDialog
             this.dismiss()
         }
 
         return rootview
     }
 
-    //interface implemented in list fragment
 
     interface TypePicker {
         fun typeToSearch(type: String)
     }
 
-    // handle rotation
     override fun onDestroyView() {
         if (dialog != null && retainInstance) dialog!!.setOnDismissListener(null)
         super.onDestroyView()

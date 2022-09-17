@@ -3,10 +3,7 @@ package com.example.utils
 import com.example.model.dto.CustomPokemonListItem
 
 object Constants {
-    const val BASE_URL = "https://pokeapi.co/"
     const val CACHE = 300000
-    const val CICERONE_NAME: String = "cicerone"
-    const val MAIN_ACTIVITY_NAME: String = "MainActivity"
 
     fun preSeedDB(): List<CustomPokemonListItem> {
         val customPokemonListItem = mutableListOf<CustomPokemonListItem>()
@@ -213,11 +210,5 @@ object Constants {
             )
         )
         return customPokemonListItem
-    }
-}
-
-class FragmentScope {
-    companion object {
-        const val SHOW_MAIN_SCREEN_FRAGMENT_SCOPE = "SHOW_MAIN_SCREEN_FRAGMENT_SCOPE"
     }
 }

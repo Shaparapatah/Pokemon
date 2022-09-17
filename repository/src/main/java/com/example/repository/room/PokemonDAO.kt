@@ -14,7 +14,7 @@ interface PokemonDAO {
     @Query("SELECT * FROM pokemon WHERE name LIKE '%' || :name || '%'")
     suspend fun searchPokemonByName(name: String): List<CustomPokemonListItem>?
 
-    // returns exact type matches from DB
+    // возвращает результат совпадения введённого текста
     @Query("SELECT * FROM pokemon WHERE type Like :type")
     suspend fun searchPokemonByType(type: String): List<CustomPokemonListItem>?
 
@@ -31,15 +31,11 @@ interface PokemonDAO {
     fun insertPokemon(item: CustomPokemonListItem)
 
 
-    // pokemonDetails table functions
-
     @Query("SELECT * FROM pokemonDetails WHERE id Like :id")
     suspend fun getPokemonDetails(id: String): PokemonDetailItem?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPokemonDetailsItem(pokemonDetailItem: PokemonDetailItem)
-
-    // WorkManger Functions
 
     @Query("SELECT * FROM pokemon ORDER BY id DESC LIMIT 1")
     fun getLastStoredPokemonObject(): CustomPokemonListItem

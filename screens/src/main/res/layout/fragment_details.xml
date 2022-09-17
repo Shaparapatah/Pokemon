@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background800"
-    android:padding="16dp"
+    android:padding="@dimen/layout_padding_fragment_details"
     android:scrollbars="none">
 
     <RelativeLayout
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/corner_card"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/layout_padding_fragment_details">
 
 
         <Button
@@ -23,14 +23,14 @@
             android:layout_below="@id/mapview"
             android:layout_centerInParent="true"
             android:backgroundTint="@color/flying"
-            android:text="Сохранить Покемона"
-            android:textSize="20sp"
+            android:text="@string/text_button_details_fragment"
+            android:textSize="@dimen/text_size_20sp"
             android:textStyle="bold" />
 
         <FrameLayout
             android:id="@+id/mapview"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="@dimen/width_detail_fragment_250"
+            android:layout_height="@dimen/height_detail_fragment_250"
             android:layout_below="@id/detail_fragment_map_ll"
             android:layout_centerInParent="true"
             android:background="@drawable/map">
@@ -48,7 +48,7 @@
         <ImageView
             android:id="@+id/detail_fragment_Image"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="@dimen/height_detail_fragment_250"
             android:background="@color/background800"
             tools:src="@drawable/place_holder_image" />
 
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white_70"
-            android:textSize="30sp"
+            android:textSize="@dimen/text_size_30sp"
             android:textStyle="bold"
             tools:text="Пикачу" />
 
@@ -67,12 +67,6 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <!--            <ImageView-->
-        <!--                android:id="@+id/detailFragment_star"-->
-        <!--                android:layout_width="40dp"-->
-        <!--                android:layout_height="40dp"-->
-        <!--                app:srcCompat="@drawable/star" />-->
-
 
         <LinearLayout
             android:id="@+id/stats_title_container"
@@ -80,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/abilities_container"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="@dimen/linear_layout_paddin_10"
             android:weightSum="100">
 
 
@@ -89,9 +83,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="90"
-                android:text="Статистика"
+                android:text="@string/text_title_stats"
                 android:textColor="@color/white_70"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_16sp"
                 android:textStyle="bold" />
 
 
@@ -115,14 +109,14 @@
             android:weightSum="100">
 
             <TextView
-                android:id="@+id/detailf_ragment_title_abilities"
+                android:id="@+id/detail_fragment_title_abilities"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recipe_title"
                 android:layout_weight="90"
-                android:text="Способности"
+                android:text="@string/text_abilities_detail_fragment"
                 android:textColor="@color/white_70"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_size_16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -151,9 +145,9 @@
                 android:id="@+id/detail_fragment_map_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Карта Покемонов"
+                android:text="@string/text_map_details_fragment"
                 android:textColor="@color/white_70"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_size_20sp"
                 android:textStyle="bold" />
 
 
@@ -165,7 +159,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/container"
             android:orientation="vertical"
-            android:padding="10dp" />
+            android:padding="@dimen/padding_linear_detail_fragment_10" />
 
     </RelativeLayout>
 </ScrollView>

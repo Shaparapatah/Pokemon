@@ -1,6 +1,5 @@
 package com.example.pokemon.ui.main.app
 
-import AppModule
 import android.app.Application
 import com.example.pokemon.ui.main.di.components.AppComponent
 import com.example.pokemon.ui.main.di.components.DaggerAppComponent

@@ -10,8 +10,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_saved_fragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingTop="40dp"
+        android:layout_height="@dimen/height_rv_saved_fragment"
+        android:paddingTop="@dimen/padding_top_rv_saved_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:spanCount="2"
@@ -19,11 +19,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/saved_fragment_back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="381dp"
+        android:layout_width="@dimen/width_saved_fragment_back"
+        android:layout_height="@dimen/height_saved_fragment_back"
+        android:layout_marginStart="@dimen/margin_start_saved_fragment_back"
+        android:layout_marginTop="@dimen/margin_top_saved_fragment_back"
+        android:layout_marginEnd="@dimen/margin_end_saved_fragment_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,10 +31,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/delete_fragment"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="365dp"
-        android:layout_marginBottom="691dp"
+        android:layout_width="@dimen/width_delete_fragment"
+        android:layout_height="@dimen/height_delete_fragment"
+        android:layout_marginStart="@dimen/margin_start_delete_fragment"
+        android:layout_marginBottom="@dimen/margin_bottom_delete_fragment"
         app:layout_constraintBottom_toBottomOf="@+id/rv_saved_fragment"
         app:layout_constraintStart_toStartOf="@+id/rv_saved_fragment"
         app:srcCompat="@drawable/ic_delete" />

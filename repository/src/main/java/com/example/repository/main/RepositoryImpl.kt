@@ -48,21 +48,19 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getPokemonSavedPokemon(): Resource<List<CustomPokemonListItem>> {
         val dbResult = data.getSavedPokemon()
         if (dbResult.isNullOrEmpty()) {
-            return Resource.Error("saved pokemon list is empty")
+            return Resource.Error("Список сохранённых Покемонов пуст!")
         } else {
             return Resource.Success(dbResult)
         }
     }
 
     override suspend fun getPokemonDetail(id: String): Resource<PokemonDetailItem> {
-        // first check DB for results
+        // проверка ДБ на результаты
         val dbResult = data.getPokemonDetails(id)
 
         if (dbResult != null) {
             //Если кэш хранится больше 5 минут, делает API запрос
             if (dbResult.timestamp?.toLong()!! < fiveMinutesAgo) {
-
-                Log.d(TAG, "CACHE EXPIRED RETRIEVING NEW ITEM")
 
                 try {
                     val apiResult = retrofit.getPokemonDetail(id)
@@ -75,9 +73,9 @@ class RepositoryImpl @Inject constructor(
                             val newDBRead = data.getPokemonDetails(id)
                             return Resource.Success(newDBRead!!)
                         } else {
-                            // return expired object to let user know cache has expired and we cannot find new items from Api
                             return Resource.Expired(
-                                "Cache expired and cannot retrieve new Pokemon please check network connectivity ",
+                                "Кэш устарел, невозможно загрузить Покемона, " +
+                                        "проверьте подключение к интернету",
                                 dbResult
                             )
                         }
@@ -85,13 +83,11 @@ class RepositoryImpl @Inject constructor(
                         return Resource.Error(apiResult.message())
                     }
                 } catch (e: Exception) {
-                    return Resource.Error("error retrieving results")
+                    return Resource.Error("Ошибка")
                 }
 
 
             } else {
-                Log.d(TAG, "CACHE IS SUFFICIENT RETURN ITEM FROM DB")
-                Log.d(TAG, "CACHED TIME : ${dbResult.timestamp} $fiveMinutesAgo")
                 return Resource.Success(dbResult)
             }
 
@@ -104,7 +100,6 @@ class RepositoryImpl @Inject constructor(
                         newPokemon!!.timestamp = System.currentTimeMillis().toString()
                         data.insertPokemonDetailsItem(newPokemon)
                         val newDBRead = data.getPokemonDetails(id)
-                        Log.d(TAG, "NO ITEM IN DB FOUND, ITEM HAS BEEN RETRIEVED FROM API")
                         return Resource.Success(newDBRead!!)
                     } else {
                         return Resource.Error(apiResult.message())
@@ -149,5 +144,4 @@ class RepositoryImpl @Inject constructor(
     override suspend fun savePokemon(pokemonListItem: CustomPokemonListItem) {
         data.insertPokemon(pokemonListItem)
     }
-
 }

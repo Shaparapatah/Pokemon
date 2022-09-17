@@ -25,17 +25,12 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     FragmentMainScreenBinding::inflate
 ), FilterDialog.TypePicker {
 
-//    val mainActivity: MainActivity by lazy {
-//        requireActivity() as MainActivity
-//    }
 
     private val viewModel: MainScreenViewModel by viewModels()
     private lateinit var adapterPokemon: MainScreenAdapter
     private var pokemonList = mutableListOf<CustomPokemonListItem>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
         initRv()
         initClickListeners()
         initSearchView()
@@ -51,10 +46,12 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     private fun initButtons() {
         binding.mainScreenFragmentMapFAB.setOnClickListener {
             findNavController().navigate(R.id.action_mainScreenFragment_to_mapViewFragment)
+//            router.navigateTo(screens.mapViewScreen())
 
         }
         binding.mainScreenFragmentSavedFAB.setOnClickListener {
             findNavController().navigate(R.id.action_mainScreenFragment_to_savedViewFragment)
+//             router.navigateTo(screens.savedScreen())
         }
     }
 
