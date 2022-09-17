@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.core.base.BaseFragment
+import com.example.pokemon.ui.main.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
 import com.example.pokemon.ui.main.MainActivity
 import com.example.screens.R

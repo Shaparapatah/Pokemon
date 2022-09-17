@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.core.base.BaseFragment
+import com.example.pokemon.ui.main.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
 import com.example.pokemon.ui.main.MainActivity
 import com.example.screens.adapter.MainScreenAdapter
@@ -17,7 +17,6 @@ import com.example.screens.dialogs.FilterDialog
 import com.example.screens.viewmodel.MainScreenViewModel
 import com.example.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import org.koin.core.scope.Scope
 
 private const val TAG = "MainScreenFragment"
 

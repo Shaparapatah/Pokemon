@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
-import com.example.core.base.BaseFragment
+import com.example.pokemon.ui.main.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
 import com.example.model.dto.PokemonDetailItem
 import com.example.pokemon.ui.main.MainActivity

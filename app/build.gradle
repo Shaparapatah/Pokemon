@@ -45,6 +45,8 @@ dependencies {
     // Подключение модулей
     api project(":utils")
     api project(":repository")
+    api project(":core")
+
 
     // Подключение библиотек
     //AndroidX
