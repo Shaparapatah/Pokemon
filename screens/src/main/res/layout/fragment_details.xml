@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background800"
@@ -17,7 +16,7 @@
 
 
         <Button
-            android:id="@+id/detailFragment_save_button"
+            android:id="@+id/detail_save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/mapview"
@@ -54,7 +53,7 @@
 
 
         <TextView
-            android:id="@+id/detail_fragment_title_name"
+            android:id="@+id/detail_fragment_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white_70"
@@ -79,7 +78,6 @@
 
 
             <TextView
-                android:id="@+id/detail_fragment_title_stats"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="90"
@@ -109,7 +107,6 @@
             android:weightSum="100">
 
             <TextView
-                android:id="@+id/detail_fragment_title_abilities"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recipe_title"
@@ -142,7 +139,6 @@
 
 
             <TextView
-                android:id="@+id/detail_fragment_map_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_map_details_fragment"

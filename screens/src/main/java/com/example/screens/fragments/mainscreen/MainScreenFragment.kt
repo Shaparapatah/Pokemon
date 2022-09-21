@@ -8,10 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
-import com.example.screens.R
 import com.example.screens.adapter.MainScreenAdapter
 import com.example.screens.databinding.FragmentMainScreenBinding
 import com.example.screens.dialogs.FilterDialog
@@ -53,12 +51,12 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
 
     //Инициализация кнопок
     private fun initButtons() {
-        binding.mainScreenFragmentMapFAB.setOnClickListener {
+        binding.mainScreenMapFAB.setOnClickListener {
 //            findNavController().navigate(R.id.action_mainScreenFragment_to_mapViewFragment)
             router.navigateTo(screens.mapViewScreen())
 
         }
-        binding.mainScreenFragmentSavedFAB.setOnClickListener {
+        binding.mainScreenSavedFAB.setOnClickListener {
 //            findNavController().navigate(R.id.action_mainScreenFragment_to_savedViewFragment)
             router.navigateTo(screens.savedScreen())
         }

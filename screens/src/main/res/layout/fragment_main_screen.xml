@@ -63,7 +63,7 @@
 
 
     <com.mikhaellopez.circularimageview.CircularImageView
-        android:id="@+id/main_screen_fragment_saved_FAB"
+        android:id="@+id/main_screen_saved_FAB"
         android:layout_width="@dimen/width_main_screen_fragment_saved_FAB"
         android:layout_height="@dimen/height_main_screen_fragment_saved_FAB"
         android:layout_margin="@dimen/margin_main_screen_fragment_saved_FAB"
@@ -75,7 +75,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
-        android:id="@+id/main_screen_fragment_map_FAB"
+        android:id="@+id/main_screen_map_FAB"
         android:layout_width="@dimen/width_main_screen_fragment_map_FAB"
         android:layout_height="@dimen/height_main_screen_fragment_map_FAB"
         android:layout_margin="@dimen/margin_main_screen_fragment_map_FAB"

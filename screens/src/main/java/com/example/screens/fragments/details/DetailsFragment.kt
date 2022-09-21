@@ -51,7 +51,11 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
                 pokemon.type?.let { it1 -> setType(it1) }
                 Log.d(TAG, pokemon.id.toString())
                 // setup name
-                binding.detailFragmentTitleName.text = pokemon.name.capitalize()
+                binding.detailFragmentTitle.text = pokemon.name.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(
+                        Locale.getDefault()
+                    ) else it.toString()
+                }
                 // query api for pokemon details
                 getPokemonDetails(pokemon.apiId)
                 subscribeObservers()
@@ -60,13 +64,13 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
 
         if (this::mPokemon.isInitialized) {
             if (mPokemon.isSaved == "false") {
-                binding.detailFragmentSaveButton.setOnClickListener {
+                binding.detailSaveButton.setOnClickListener {
                     mPokemon.isSaved = "true"
                     viewModel.savePokemon(mPokemon)
-                    binding.detailFragmentSaveButton.text = "Saved"
+                    binding.detailSaveButton.text = "Saved"
                 }
             } else {
-                binding.detailFragmentSaveButton.text = "Saved"
+                binding.detailSaveButton.text = "Saved"
             }
         }
     }
