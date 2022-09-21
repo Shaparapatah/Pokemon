@@ -19,6 +19,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        
     }
 
     buildTypes {
@@ -43,13 +45,7 @@ android {
 
 dependencies {
     // Подключение модулей
-    api project(":utils")
-    api project(":repository")
     api project(":screens")
-    api project(":core")
-
-
-
 
     // Подключение библиотек
     //AndroidX
@@ -93,16 +89,16 @@ dependencies {
     debugImplementation libs.tests.recyclerView
     // Cicerone
     implementation libs.cicerony.runtime
-    // Koin
-    //Koin core features
-    implementation libs.koin.core
-    //Koin main features for Android (Scope,ViewModel ...)
-    implementation libs.koin.android
-    //Koin Java Compatibility
-    implementation libs.koin.compat
-    // Koin for Tests
-    testImplementation libs.koin.testsandroidx
-    testImplementation libs.koin.testsio
+//    // Koin
+//    //Koin core features
+//    implementation libs.koin.core
+//    //Koin main features for Android (Scope,ViewModel ...)
+//    implementation libs.koin.android
+//    //Koin Java Compatibility
+//    implementation libs.koin.compat
+//    // Koin for Tests
+//    testImplementation libs.koin.testsandroidx
+//    testImplementation libs.koin.testsio
 //    //Hilt-dagger
 //    implementation libs.hilt.dagger
 //    kapt libs.hilt.compiler
@@ -117,19 +113,12 @@ dependencies {
     implementation libs.room.ktx
     implementation libs.room.gson
 
-    //WorkManager
-    implementation libs.work.runtime
-
-    //Nav
-    implementation libs.nav.fragments
-    implementation libs.nav.ui
-    implementation libs.nav.lifecycle
-
-    //ViewModel
-    implementation libs.viewModel.navigationFragment
-    implementation libs.viewModel.navigationUI
-    implementation libs.viewModel.livedata
-    implementation libs.viewModel.lifecycle
+//
+//    //ViewModel
+//    implementation libs.viewModel.navigationFragment
+//    implementation libs.viewModel.navigationUI
+//    implementation libs.viewModel.livedata
+//    implementation libs.viewModel.lifecycle
 
     //Dagger
     implementation libs.dagger.dagger

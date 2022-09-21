@@ -16,10 +16,13 @@ import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
 import com.example.model.dto.PokemonDetailItem
 import com.example.screens.databinding.FragmentDetailsBinding
+import com.example.screens.navigator.AppScreens
 import com.example.screens.viewmodel.DetailsFragmentViewModel
 import com.example.utils.ImageLoader
 import com.example.utils.Resource
+import com.github.terrakok.cicerone.Router
 import java.util.*
+import javax.inject.Inject
 
 private const val TAG = "DetailsFragment"
 
@@ -27,6 +30,12 @@ private const val TAG = "DetailsFragment"
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(
     FragmentDetailsBinding::inflate
 ) {
+
+    @Inject
+    lateinit var router: Router
+
+    @Inject
+    lateinit var screens: AppScreens
 
     private val viewModel: DetailsFragmentViewModel by viewModels()
     lateinit var mPokemon: CustomPokemonListItem

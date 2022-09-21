@@ -11,9 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.core.base.BaseFragment
 import com.example.screens.databinding.FragmentMapBinding
+import com.example.screens.navigator.AppScreens
 import com.example.screens.viewmodel.MapViewModel
 import com.example.utils.ImageLoader
 import com.example.utils.Resource
+import com.github.terrakok.cicerone.Router
+import javax.inject.Inject
 
 
 private const val TAG = "MapViewFragment"
@@ -21,13 +24,18 @@ private const val TAG = "MapViewFragment"
 
 class MapViewFragment : BaseFragment<FragmentMapBinding>(FragmentMapBinding::inflate) {
 
+    @Inject
+    lateinit var router: Router
+    @Inject
+    lateinit var screens:AppScreens
+
     private val viewModel: MapViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         binding.mapFragmentBack.setOnClickListener {
-//            router.navigateTo(screens.mainScreen())
+            router.navigateTo(screens.mainScreen())
         }
         initObservers()
         lifecycleScope.launchWhenStarted {

@@ -42,47 +42,47 @@ def ciceronyVersion = "6.6"
 def moxyVersion = "2.2.2"
 def lifecycleVersion = "2.2.0"
 def skydovesVersion = "1.1.1"
-def hiltVersion = "1.0.0-beta01"
+//def hiltVersion = "1.0.0-beta01"
 def workManager = "2.7.1"
 def navGraph = "2.3.0"
 def navExt = "2.2.0"
 def circularImg = "4.3.1"
-def viewModelLifecycle = "2.4.0"
+//def viewModelLifecycle = "2.4.0"
 
 ext {
     libs = [:]
 
 
-    //ViewModel
-    viewModel = [:]
-    libs.viewModel = viewModel
-    viewModel.navigationFragment = "androidx.navigation:navigation-fragment-ktx:$viewModelLifecycle"
-    viewModel.navigationUI = "androidx.navigation:navigation-ui-ktx:$viewModelLifecycle"
-    viewModel.livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$viewModelLifecycle"
-    viewModel.lifecycle = "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelLifecycle"
+//    //ViewModel
+//    viewModel = [:]
+//    libs.viewModel = viewModel
+//    viewModel.navigationFragment = "androidx.navigation:navigation-fragment-ktx:$viewModelLifecycle"
+//    viewModel.navigationUI = "androidx.navigation:navigation-ui-ktx:$viewModelLifecycle"
+//    viewModel.livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$viewModelLifecycle"
+//    viewModel.lifecycle = "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelLifecycle"
 
     //Circular ImageView
     circular = [:]
     libs.circular = circular
     circular.imageview = "com.mikhaellopez:circularimageview:$circularImg"
 
-    //Nav
-    nav = [:]
-    libs.nav = nav
-    nav.fragments = "androidx.navigation:navigation-fragment-ktx:$navGraph"
-    nav.ui = "androidx.navigation:navigation-fragment-ktx:$navGraph"
-    nav.lifecycle = "androidx.lifecycle:lifecycle-extensions:$navExt"
+//    //Nav
+//    nav = [:]
+//    libs.nav = nav
+//    nav.fragments = "androidx.navigation:navigation-fragment-ktx:$navGraph"
+//    nav.ui = "androidx.navigation:navigation-fragment-ktx:$navGraph"
+//    nav.lifecycle = "androidx.lifecycle:lifecycle-extensions:$navExt"
+//
+//    //WorkManager
+//    work = [:]
+//    libs.work = work
+//    work.runtime = "androidx.work:work-runtime-ktx:$workManager"
 
-    //WorkManager
-    work = [:]
-    libs.work = work
-    work.runtime = "androidx.work:work-runtime-ktx:$workManager"
-
-    //Hilt-dagger
-    hilt = [:]
-    libs.hilt = hilt
-    hilt.dagger = "androidx.hilt:hilt-work:$hiltVersion"
-    hilt.compiler = "com.google.dagger:hilt-compiler:$hiltVersion"
+//    //Hilt-dagger
+//    hilt = [:]
+//    libs.hilt = hilt
+//    hilt.dagger = "androidx.hilt:hilt-work:$hiltVersion"
+//    hilt.compiler = "com.google.dagger:hilt-compiler:$hiltVersion"
 
     //Skydoves
     skydoves = [:]
@@ -214,7 +214,7 @@ ext {
     libs.lifecycle = lifecycle
     lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     // LiveData
-    lifecycle.ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+//    lifecycle.ktx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     // Lifecycles only (without ViewModel or LiveData)
 //    lifecycle.runtimektx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 //    lifecycle.process = "androidx.lifecycle:lifecycle-process:$lifecycleVersion"

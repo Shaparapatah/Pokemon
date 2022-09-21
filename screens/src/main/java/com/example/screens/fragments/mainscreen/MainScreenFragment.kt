@@ -15,8 +15,11 @@ import com.example.screens.R
 import com.example.screens.adapter.MainScreenAdapter
 import com.example.screens.databinding.FragmentMainScreenBinding
 import com.example.screens.dialogs.FilterDialog
+import com.example.screens.navigator.AppScreens
 import com.example.screens.viewmodel.MainScreenViewModel
 import com.example.utils.Resource
+import com.github.terrakok.cicerone.Router
+import javax.inject.Inject
 
 private const val TAG = "MainScreenFragment"
 
@@ -24,6 +27,12 @@ private const val TAG = "MainScreenFragment"
 class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     FragmentMainScreenBinding::inflate
 ), FilterDialog.TypePicker {
+
+    @Inject
+    lateinit var router: Router
+
+    @Inject
+    lateinit var screens: AppScreens
 
 
     private val viewModel: MainScreenViewModel by viewModels()
@@ -45,13 +54,13 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
     //Инициализация кнопок
     private fun initButtons() {
         binding.mainScreenFragmentMapFAB.setOnClickListener {
-            findNavController().navigate(R.id.action_mainScreenFragment_to_mapViewFragment)
-//            router.navigateTo(screens.mapViewScreen())
+//            findNavController().navigate(R.id.action_mainScreenFragment_to_mapViewFragment)
+            router.navigateTo(screens.mapViewScreen())
 
         }
         binding.mainScreenFragmentSavedFAB.setOnClickListener {
-            findNavController().navigate(R.id.action_mainScreenFragment_to_savedViewFragment)
-//             router.navigateTo(screens.savedScreen())
+//            findNavController().navigate(R.id.action_mainScreenFragment_to_savedViewFragment)
+            router.navigateTo(screens.savedScreen())
         }
     }
 
@@ -135,12 +144,13 @@ class MainScreenFragment : BaseFragment<FragmentMainScreenBinding>(
 
         adapterPokemon.setOnClickListener(object : MainScreenAdapter.OnClickListener {
             override fun onClick(item: CustomPokemonListItem) {
-                val bundle = Bundle()
-                bundle.putParcelable("pokemon", item)
-                findNavController().navigate(
-                    R.id.action_savedViewFragment_to_detailFragment,
-                    bundle
-                )
+//                val bundle = Bundle()
+//                bundle.putParcelable("pokemon", item)
+//                findNavController().navigate(
+//                    R.id.action_savedViewFragment_to_detailFragment,
+//                    bundle
+//                )
+                router.navigateTo(screens.detailsScreen())
             }
 
         })

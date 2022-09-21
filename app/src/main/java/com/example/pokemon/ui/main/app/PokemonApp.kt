@@ -9,18 +9,13 @@ class PokemonApp : Application() {
 
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.builder()
+//            .appModule(AppModule(this))
             .build()
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        _instance = this
     }
 
     companion object {
         private var _instance: PokemonApp? = null
         val instance
-            get() = _instance!!
+            get() = _instance
     }
-
 }

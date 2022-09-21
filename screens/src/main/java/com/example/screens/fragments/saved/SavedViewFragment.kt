@@ -6,19 +6,26 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.core.base.BaseFragment
 import com.example.model.dto.CustomPokemonListItem
-import com.example.screens.R
 import com.example.screens.adapter.SavedPokemonAdapter
 import com.example.screens.databinding.FragmentSavedPokemonBinding
+import com.example.screens.navigator.AppScreens
 import com.example.screens.viewmodel.SavedFragmentViewModel
 import com.example.utils.Resource
+import com.github.terrakok.cicerone.Router
+import javax.inject.Inject
 
 private const val TAG = "SavedViewFragment"
 
 class SavedViewFragment :
     BaseFragment<FragmentSavedPokemonBinding>(FragmentSavedPokemonBinding::inflate) {
+
+    @Inject
+    lateinit var router: Router
+
+    @Inject
+    lateinit var screens: AppScreens
 
     private val viewModel: SavedFragmentViewModel by viewModels()
     private lateinit var pokemonSavedListAdapter: SavedPokemonAdapter
@@ -31,7 +38,7 @@ class SavedViewFragment :
         super.onViewCreated(view, savedInstanceState)
 
         binding.savedFragmentBack.setOnClickListener {
-//            router.navigateTo(screens.mainScreen())
+            router.navigateTo(screens.mainScreen())
         }
 
         //setup settings icon
@@ -55,11 +62,11 @@ class SavedViewFragment :
                 // create bundle to pass to next fragment
                 val bundle = Bundle()
                 bundle.putParcelable("pokemon", item)
-                findNavController().navigate(
-                    R.id.action_savedViewFragment_to_detailFragment,
-                    bundle
-//                router.navigateTo(screens.detailsScreen())
-                )
+//                findNavController().navigate(
+//                    R.id.action_savedViewFragment_to_detailFragment,
+//                    bundle
+                router.navigateTo(screens.detailsScreen())
+
             }
 
         })

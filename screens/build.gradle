@@ -107,13 +107,21 @@ dependencies {
     //Glide
     implementation libs.glide.runtime
     implementation libs.glide.compiler
-    //Hilt-dagger
-    implementation libs.hilt.dagger
+//    //Hilt-dagger
+//    implementation libs.hilt.dagger
     //Circular Image
     implementation libs.circular.imageview
 
-    //Nav
-    implementation libs.nav.fragments
-    implementation libs.nav.ui
-    implementation libs.nav.lifecycle
+//    //Nav
+//    implementation libs.nav.fragments
+//    implementation libs.nav.ui
+//    implementation libs.nav.lifecycle
+
+    //Dagger
+    implementation libs.dagger.dagger
+    implementation libs.dagger.runtime
+    implementation libs.dagger.support
+    implementation libs.dagger.processor
+    implementation libs.dagger.compiler
+    implementation libs.dagger.addsupport
 }
